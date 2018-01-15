@@ -41,7 +41,7 @@ def add_two_binary_strings(string_1, string_2):
     return int(new_string_1) + int(new_string_2)
 
 
-print(add_two_binary_strings("11", "11"))
+# print(add_two_binary_strings("11", "11"))
 
 def palindromes(word):
     if word == word[::-1]:
@@ -64,6 +64,41 @@ def reverse_given_text(word):
     formatted_word = ''.join(reversed_word_list)
     return formatted_word
 
+
+def reverse_text_recursively(word, index=None):
+    word_list = list(word)
+
+    len_of_word_list = len(word_list)
+
+
+    reversed_word_list = []
+
+    if index == None:
+        index = 0
+
+
+    reversal_indexes = (len_of_word_list - index ) - 1
+
+    reversed_word_list.append(word_list[reversal_indexes])
+
+
+    index += 1
+
+
+    print(reversed_word_list)
+
+    return reverse_text_recursively(word, index)
+
+
+print(reverse_text_recursively('dog'))
+
+
+
+
+
+
+
+
 def is_palindrome(word):
 
     new_word = word.replace(' ', '')
@@ -79,8 +114,9 @@ def is_palindrome(word):
 
     return False
 
-print(is_palindrome('no, on!'))  # We do not currently pass the test for white space if there is a letter in the other end of the space
+# print(is_palindrome('AAAAAAAZ'))  # We do not currently pass the test for white space if there is a letter in the other end of the space
 # such as taco cat and race car
+
 
 
 
