@@ -66,7 +66,9 @@ def reverse_given_text(word):
 
 def is_palindrome(word):
 
-    formatted_word = word.lower()
+    new_word = word.replace(' ', '')
+
+    formatted_word = new_word.lower()
 
     if type(word) != str:
         raise ValueError('Function undefined for illegitimate words')
@@ -77,8 +79,8 @@ def is_palindrome(word):
 
     return False
 
-print(is_palindrome('taco cat'))  # We do not currently pass the test for white space if there is a letter in the other end of the space
-# such as taco cat
+print(is_palindrome('Race Fast Safe Car'))  # We do not currently pass the test for white space if there is a letter in the other end of the space
+# such as taco cat and race car
 
 
 
