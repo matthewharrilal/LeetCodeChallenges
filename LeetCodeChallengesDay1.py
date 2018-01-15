@@ -43,3 +43,40 @@ def add_two_binary_strings(string_1, string_2):
 
 print(add_two_binary_strings("11", "11"))
 
+def palindromes(word):
+    if word == word[::-1]:
+        return True
+
+    return False
+
+def reverse_given_text(word):
+
+    word_list = list(word)
+
+    len_of_word_list = len(word_list)
+
+    reversed_word_list = []
+
+    for index, _ in enumerate(word_list):
+        reversal_indexes = (len_of_word_list - index) - 1
+        reversed_word_list.append(word_list[reversal_indexes])
+
+    formatted_word = ''.join(reversed_word_list)
+    return formatted_word
+
+def is_palindrome(word):
+
+    if type(word) != str:
+        raise ValueError('Function undefined for illegitimate words')
+
+
+    if word == reverse_given_text(word):
+        return True
+
+    return False
+
+print(is_palindrome('racecar'))
+
+
+
+
