@@ -79,7 +79,7 @@ def is_palindrome(word):
 
     return False
 
-print(is_palindrome('Race Fast Safe Car'))  # We do not currently pass the test for white space if there is a letter in the other end of the space
+print(is_palindrome('no, on!'))  # We do not currently pass the test for white space if there is a letter in the other end of the space
 # such as taco cat and race car
 
 
