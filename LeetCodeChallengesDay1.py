@@ -70,33 +70,24 @@ def reverse_text_recursively(word, index=None):
 
     len_of_word_list = len(word_list)
 
-
     reversed_word_list = []
 
     if index == None:
         index = 0
 
-
-    reversal_indexes = (len_of_word_list - index ) - 1
+    reversal_indexes = (len_of_word_list - index) - 1
 
     reversed_word_list.append(word_list[reversal_indexes])
 
-
     index += 1
 
-
-    print(reversed_word_list)
+    if index <= 3:
+        reversed_word_list.append(word_list[reversal_indexes])
 
     return reverse_text_recursively(word, index)
 
 
 print(reverse_text_recursively('dog'))
-
-
-
-
-
-
 
 
 def is_palindrome(word):
