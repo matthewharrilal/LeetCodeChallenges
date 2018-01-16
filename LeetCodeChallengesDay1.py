@@ -1,3 +1,4 @@
+import string
 
 def add_two_binary_strings(string_1, string_2):
     # Goal of this function is to be able to add two binary strings
@@ -105,19 +106,17 @@ def is_palindrome(word):
     if type(word) != str:
         raise ValueError('Function undefined for illegitimate words')
 
+    for character in string.punctuation:
+        formatted_word = formatted_word.replace(character, '')
 
     if formatted_word == reverse_text_recursively(formatted_word):
-
         return True
 
     print(reverse_text_recursively(formatted_word))
 
     return False
 
-print(is_palindrome('taco cat'))  # We do not currently pass the test for white space if there is a letter in the other end of the space
+print(is_palindrome("A man, a plan, a canal - Panama!"))  # We do not currently pass the test for white space if there is a letter in the other end of the space
 # such as taco cat and race car
-
-
-
 
 
