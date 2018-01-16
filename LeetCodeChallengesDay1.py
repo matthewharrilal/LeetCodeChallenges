@@ -1,4 +1,5 @@
 import string
+import pdb
 
 def add_two_binary_strings(string_1, string_2):
     # Goal of this function is to be able to add two binary strings
@@ -81,7 +82,7 @@ def reverse_text_recursively(word, index=None):
 
     reversal_indexes = (len_of_word_list - index)
 
-    reversed_word_list.extend(word_list[reversal_indexes - 1])
+    reversed_word_list.append(word_list[reversal_indexes - 1])
 
     index += 1
 
@@ -116,7 +117,72 @@ def is_palindrome(word):
 
     return False
 
-print(is_palindrome("A man, a plan, a canal - Panama!"))  # We do not currently pass the test for white space if there is a letter in the other end of the space
-# such as taco cat and race car
+
+# STRING SEARCHING ALGORITHM
+
+def contains(text, pattern):
+    '''Returns a boolean indicating whether or not a pattern occurs in text or not'''
+
+    text_list = list(text)
+
+    len_text_list = len(text_list)
+
+    index = 0
+
+    while len_text_list > 0:
+
+        for word in pattern:
+            if word == text_list[index]:
+                return True
+            return False
+
+        index += 1
+        len_text_list -= 1
+
+list_holder = [0,0,0,0]
+
+def prefix_table_recursively(text, index=None):
+
+    text_list = list(text)
+
+    len_of_text_list = len(text_list)
+
+    if index == None:
+        index = 0
+
+
+    list_holder[index] = 0
+    pdb.set_trace()
+
+    index_at_i = index
+    first_element = text_list[index_at_i]
+
+
+    index_at_j = index_at_i + 1
+    second_element = text_list[index_at_j]
+
+    if first_element == second_element:
+        list_holder[index_at_j] = list_holder[index_at_i] + 1
+        index_at_i += 1
+        index_at_j += 1
+
+    if first_element != second_element and index_at_i != 0:
+        index_at_i -= 1
+
+    if first_element == 0:
+        list_holder[index_at_j] = 0
+        index_at_j += 1
+
+    if index >= len_of_text_list:
+        return list_holder
+
+    index += 1
+
+    return prefix_table_recursively(text, index)
+
+print(prefix_table_recursively("abac"))
+
+
+
 
 
