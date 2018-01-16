@@ -65,29 +65,35 @@ def reverse_given_text(word):
     return formatted_word
 
 
+
+reversed_word_list = []
+
+
 def reverse_text_recursively(word, index=None):
     word_list = list(word)
 
     len_of_word_list = len(word_list)
 
-    reversed_word_list = []
 
     if index == None:
         index = 0
 
-    reversal_indexes = (len_of_word_list - index) - 1
+    reversal_indexes = (len_of_word_list - index)
 
-    reversed_word_list.append(word_list[reversal_indexes])
+    reversed_word_list.extend(word_list[reversal_indexes - 1])
 
     index += 1
 
-    if index <= 3:
-        reversed_word_list.append(word_list[reversal_indexes])
+    if index >= len(word_list):
+        formatted_word = ''.join(reversed_word_list)
+        return formatted_word
+
+
 
     return reverse_text_recursively(word, index)
 
 
-print(reverse_text_recursively('dog'))
+# print(reverse_text_recursively('race car'))
 
 
 def is_palindrome(word):
@@ -100,12 +106,15 @@ def is_palindrome(word):
         raise ValueError('Function undefined for illegitimate words')
 
 
-    if formatted_word == reverse_given_text(formatted_word):
+    if formatted_word == reverse_text_recursively(formatted_word):
+
         return True
+
+    print(reverse_text_recursively(formatted_word))
 
     return False
 
-# print(is_palindrome('AAAAAAAZ'))  # We do not currently pass the test for white space if there is a letter in the other end of the space
+print(is_palindrome('taco cat'))  # We do not currently pass the test for white space if there is a letter in the other end of the space
 # such as taco cat and race car
 
 
