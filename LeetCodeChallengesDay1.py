@@ -231,22 +231,27 @@ def recursive_string_search(pattern,text, counter_for_pattern=None,counter_for_t
         text_list = list(text)
 
     if pattern_list[counter_for_pattern] == text_list[counter_for_text]:
-        # If the letter in the pattern matches the letter in the text we want to increment the count by 1 for each to iterate to the next letter and
+        # If the letter in the pattern matches the letter in the text we want to increment the count by 1 for each
+        #  to iterate to the next letter and
         # compare them
         counter_for_pattern += 1
         counter_for_text += 1
 
     if counter_for_pattern == len(pattern_list):
-        return 'Success'
+        print(counter_for_pattern,counter_for_text)
+        return 'This is where the pattern starts: %s'%(counter_for_text - counter_for_pattern)
 
 
     if pattern_list[counter_for_pattern] != text_list[counter_for_text] and counter_for_text < len(text_list):
         if counter_for_pattern > 1:
             counter_for_pattern = counter_for_pattern - prefix_table_recursively(pattern)[counter_for_pattern - 1]
         else:
+
+            # Why do we have to increment the text counter if it is the pattern that is shifting by 1?
             counter_for_text += 1
 
-    # If we are iterating through the text and the counter exceeds the length of the text that means we could not find the pattern
+    # If we are iterating through the text and the counter exceeds the length of the text
+    # that means we could not find the pattern
     if counter_for_pattern > len(text_list):
         return 'Pattern is not present in text'
 
@@ -254,6 +259,7 @@ def recursive_string_search(pattern,text, counter_for_pattern=None,counter_for_t
 
 
 print(recursive_string_search('tthe', 'Matthew'))
+print(string_searching('at', 'Matthew'))
 
 
 
