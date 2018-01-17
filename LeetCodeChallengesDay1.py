@@ -220,9 +220,7 @@ def string_searching(pattern,text):
 
 
 def recursive_string_search(pattern,text, counter_for_pattern=None,counter_for_text=None, pattern_list=None,text_list=None):
-    #
-    # if type(pattern) or type(text) != str:
-    #     raise ValueError('Function is undefined for patterns other than strings')
+
 
     if counter_for_text is None and counter_for_pattern is None and pattern_list is None and text_list is None:
         counter_for_text = 0
@@ -249,25 +247,17 @@ def recursive_string_search(pattern,text, counter_for_pattern=None,counter_for_t
 
             # Why do we have to increment the text counter if it is the pattern that is shifting by 1?
             counter_for_text += 1
+            print('This is the text counter: %s and this is the pattern counter: %s' %(counter_for_text, counter_for_pattern))
 
     # If we are iterating through the text and the counter exceeds the length of the text
     # that means we could not find the pattern
-    if counter_for_pattern > len(text_list):
+    if counter_for_text > len(text_list):
         return 'Pattern is not present in text'
 
     return recursive_string_search(pattern,text,counter_for_pattern,counter_for_text,pattern_list,text_list)
 
 
-print(recursive_string_search('tthe', 'Matthew'))
-print(string_searching('at', 'Matthew'))
-
-
-
-# print(prefix_table_recursively("abababca"))
-# print(string_searching("ab","aaab"))  # Since for now we are just testing the index functions then these are the tests that do not pass assert find_index('abc', '') == 0  # all strings contain empty string
-
-
-
+print(recursive_string_search('adab', 'abra cadabra' ))
 
 
 
