@@ -139,11 +139,11 @@ def contains(text, pattern):
         index += 1
         len_text_list -= 1
 
-list_holder = [0,0,0,0,0,0,0,0,0,0]
+list_holder = [0,0,0,0,0,0,0,0]
 
 
 
-def prefix_table_recursively(text, index_at_i=None, index_at_j=None):
+def prefix_table_recursively(text,index_at_i=None, index_at_j=None):
     text_list = list(text)
     # pdb.set_trace()
 
@@ -175,9 +175,38 @@ def prefix_table_recursively(text, index_at_i=None, index_at_j=None):
 
 
 
-    return prefix_table_recursively(text, index_at_i, index_at_j)
+    return prefix_table_recursively(text ,index_at_i, index_at_j)
 
-print(prefix_table_recursively("accadaccac"))
+# def string_matching(text):
+#
+#     text_list = list(text)
+#
+#     # This is the length of the text
+#     length_of_text = len(text)
+#
+#     # This is m the length of the prefix
+#     len_of_prefix = len(prefix_table_recursively(text))
+#
+#     # This is i the counter for the text
+#     counter_for_text = 1
+#
+#     # This is j the counter for the pattern
+#     pattern_counter = 1
+#
+#     # This is k marks the start for potential matches
+#     potential_matches = 1
+#
+#     while length_of_text - potential_matches > len_of_prefix:
+#         while pattern_counter < len_of_prefix and text_list[counter_for_text] ==
+#
+
+
+
+
+
+
+
+print(prefix_table_recursively("cocacola"))
 
 
 
