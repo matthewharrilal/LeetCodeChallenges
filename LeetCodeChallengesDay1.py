@@ -143,20 +143,19 @@ def contains(text, pattern):
 
 
 
-def prefix_table_recursively(text,list_holder=None,index_at_i=None, index_at_j=None):
-    text_list = list(text)
+def prefix_table_recursively(pattern,list_holder=None,index_at_i=None, index_at_j=None):
+    pattern_list = list(pattern)
     # pdb.set_trace()
 
     if index_at_i == None and index_at_j == None and list_holder == None:
         index_at_i = 0
         index_at_j = 1
-        list_holder = [0] * (len(text_list))
+        list_holder = [0] * (len(pattern_list))
         list_holder[index_at_i] = 0
 
 
-    first_element = text_list[index_at_i]
-    second_element = text_list[index_at_j]
-    # pdb.set_trace()
+    first_element = pattern_list[index_at_i]
+    second_element = pattern_list[index_at_j]
     if first_element == second_element:
         list_holder[index_at_j] = index_at_i + 1
         index_at_i += 1
@@ -164,7 +163,7 @@ def prefix_table_recursively(text,list_holder=None,index_at_i=None, index_at_j=N
 
     if first_element != second_element and index_at_i != 0:
         index_at_i -= 1
-        first_element = text_list[index_at_i]
+        first_element = pattern_list[index_at_i]
 
     if index_at_i == 0 and first_element != second_element:
         # print('This /is the first element: %s and this is the second element: %s' %(first_element,second_element))
@@ -172,12 +171,12 @@ def prefix_table_recursively(text,list_holder=None,index_at_i=None, index_at_j=N
         index_at_j += 1
 
     # We need to stop the recursion
-    if index_at_j >= len(text_list):
+    if index_at_j >= len(pattern_list):
         return list_holder
 
 
 
-    return prefix_table_recursively(text ,list_holder,index_at_i, index_at_j)
+    return prefix_table_recursively(pattern ,list_holder,index_at_i, index_at_j)
 
 
 def string_searching(pattern,text):
@@ -205,10 +204,8 @@ def string_searching(pattern,text):
         # If the counter eventually iterates to be its full length then we know that the pattern has come to a full spin meaning we found the pattern
         # This answers the question when do we know if the full pattern was found?
         if pattern_counter == pattern_length:
-            print("Found pattern at index %s" %(str(text_counter-pattern_counter)))
+            return("Found pattern at index %s" %(str(text_counter-pattern_counter)))
 
-            # Why do we have to subscript the prefix list with the pattern counter - 1?
-            pattern_counter = prefix_table_recursively(text)[pattern_counter - 1]
 
         # And then for the other case if the text is still being iterated through meaning the counter has not reached the full length of the text as well as the letter
         # that we are currently at in the pattern does not match the letter we are at in the text
@@ -219,10 +216,49 @@ def string_searching(pattern,text):
             else:
                 text_counter += 1
 
+        # return("No pattern was found")
 
 
-print(prefix_table_recursively("accadaccac"))
-print(string_searching("ABABCABAB","ABABDABACDABABCABAB"))
+def recursive_string_search(pattern,text, counter_for_pattern=None,counter_for_text=None, pattern_list=None,text_list=None):
+    #
+    # if type(pattern) or type(text) != str:
+    #     raise ValueError('Function is undefined for patterns other than strings')
+
+    if counter_for_text is None and counter_for_pattern is None and pattern_list is None and text_list is None:
+        counter_for_text = 0
+        counter_for_pattern = 0
+        pattern_list = list(pattern)
+        text_list = list(text)
+
+    if pattern_list[counter_for_pattern] == text_list[counter_for_text]:
+        # If the letter in the pattern matches the letter in the text we want to increment the count by 1 for each to iterate to the next letter and
+        # compare them
+        counter_for_pattern += 1
+        counter_for_text += 1
+
+    if counter_for_pattern == len(pattern_list):
+        return 'Success'
+
+
+    if pattern_list[counter_for_pattern] != text_list[counter_for_text] and counter_for_text < len(text_list):
+        if counter_for_pattern > 1:
+            counter_for_pattern = counter_for_pattern - prefix_table_recursively(pattern)[counter_for_pattern - 1]
+        else:
+            counter_for_text += 1
+
+    # If we are iterating through the text and the counter exceeds the length of the text that means we could not find the pattern
+    if counter_for_pattern > len(text_list):
+        return 'Pattern is not present in text'
+
+    return recursive_string_search(pattern,text,counter_for_pattern,counter_for_text,pattern_list,text_list)
+
+
+print(recursive_string_search('tthe', 'Matthew'))
+
+
+
+# print(prefix_table_recursively("abababca"))
+# print(string_searching("ab","aaab"))  # Since for now we are just testing the index functions then these are the tests that do not pass assert find_index('abc', '') == 0  # all strings contain empty string
 
 
 
