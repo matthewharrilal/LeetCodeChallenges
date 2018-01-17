@@ -139,18 +139,20 @@ def contains(text, pattern):
         index += 1
         len_text_list -= 1
 
-list_holder = [0,0,0,0,0,0,0,0]
+# list_holder = [0,0,0,0,0,0,0,0]
 
 
 
-def prefix_table_recursively(text,index_at_i=None, index_at_j=None):
+def prefix_table_recursively(text,list_holder=None,index_at_i=None, index_at_j=None):
     text_list = list(text)
     # pdb.set_trace()
 
-    if index_at_i == None and index_at_j == None:
+    if index_at_i == None and index_at_j == None and list_holder == None:
         index_at_i = 0
         index_at_j = 1
+        list_holder = [0] * (len(text_list))
         list_holder[index_at_i] = 0
+
 
     first_element = text_list[index_at_i]
     second_element = text_list[index_at_j]
@@ -175,36 +177,33 @@ def prefix_table_recursively(text,index_at_i=None, index_at_j=None):
 
 
 
-    return prefix_table_recursively(text ,index_at_i, index_at_j)
+    return prefix_table_recursively(text ,list_holder,index_at_i, index_at_j)
 
-
-def string_searching(pattern,text):
-    # text_counter = 0
-    # characters_counter = 0
-    #
-    # while pattern[characters_counter] == text_counter[text_counter]:
-    #     # These counters only increment when there is a match
-    #     characters_counter += 1
-    #     text_counter += 1
-
-    pattern_length = len(pattern)
-
-    text_length = len(text)
-
-    text_counter = 0
-    pattern_counter = 0
-
-    while text_counter < text_length:
-        if pattern[pattern_counter] == text[text_counter]:
-            text_counter += 1
-            pattern_counter += 1
-
-        if pattern_counter == pattern_length:
-            print("Found pattern at index %s" %(str(text_counter-pattern_counter)))
-            pattern_counter =
-
-
-
+#
+# def string_searching(pattern,text):
+#     # text_counter = 0
+#     # characters_counter = 0
+#     #
+#     # while pattern[characters_counter] == text_counter[text_counter]:
+#     #     # These counters only increment when there is a match
+#     #     characters_counter += 1
+#     #     text_counter += 1
+#
+#     pattern_length = len(pattern)
+#
+#     text_length = len(text)
+#
+#     text_counter = 0
+#     pattern_counter = 0
+#
+#     while text_counter < text_length:
+#         if pattern[pattern_counter] == text[text_counter]:
+#             text_counter += 1
+#             pattern_counter += 1
+#
+#         if pattern_counter == pattern_length:
+#             print("Found pattern at index %s" %(str(text_counter-pattern_counter)))
+#             pattern_counter =
 
 
 
@@ -213,7 +212,10 @@ def string_searching(pattern,text):
 
 
 
-print(prefix_table_recursively("cocacola"))
+
+
+
+print(prefix_table_recursively("accadaccac"))
 
 
 
