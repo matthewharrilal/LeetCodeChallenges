@@ -68,17 +68,15 @@ def reverse_given_text(word):
 
 
 
-reversed_word_list = []
-
-
-def reverse_text_recursively(word, index=None):
+def reverse_text_recursively(word, reversed_word_list=None,index=None):
     word_list = list(word)
 
     len_of_word_list = len(word_list)
 
 
-    if index == None:
+    if index == None and reversed_word_list == None:
         index = 0
+        reversed_word_list = []
 
     reversal_indexes = (len_of_word_list - index)
 
@@ -92,7 +90,7 @@ def reverse_text_recursively(word, index=None):
 
 
 
-    return reverse_text_recursively(word, index)
+    return reverse_text_recursively(word, reversed_word_list,index)
 
 
 # print(reverse_text_recursively('race car'))
@@ -116,6 +114,8 @@ def is_palindrome(word):
     print(reverse_text_recursively(formatted_word))
 
     return False
+
+# print(is_palindrome("race car"))
 
 
 # STRING SEARCHING ALGORITHM
@@ -181,14 +181,8 @@ def prefix_table_recursively(text,list_holder=None,index_at_i=None, index_at_j=N
 
 
 def string_searching(pattern,text):
-    # text_counter = 0
-    # characters_counter = 0
-    #
-    # while pattern[characters_counter] == text_counter[text_counter]:
-    #     # These counters only increment when there is a match
-    #     characters_counter += 1
-    #     text_counter += 1
 
+    # This is the boiler plate code for formatting the pattern and the text into lists as well as caculating the length of the texts
     pattern_list = list(pattern)
     text_list = list(text)
 
@@ -196,19 +190,30 @@ def string_searching(pattern,text):
 
     text_length = len(text)
 
+    # Creating a counter for the pattern and the index
     text_counter = 0
     pattern_counter = 0
 
+
+    # Iterating through the text to look for the pattern, do not want a list index out of range error therefore we put the condition while the counter is less than the text length
     while text_counter < text_length:
+        # So while iterationg through the text if we see there is a match we are going to increment both the counts so we can compare the next set of letters
         if pattern_list[pattern_counter] == text_list[text_counter]:
             text_counter += 1
             pattern_counter += 1
 
+        # If the counter eventually iterates to be its full length then we know that the pattern has come to a full spin meaning we found the pattern
+        # This answers the question when do we know if the full pattern was found?
         if pattern_counter == pattern_length:
             print("Found pattern at index %s" %(str(text_counter-pattern_counter)))
+
+            # Why do we have to subscript the prefix list with the pattern counter - 1?
             pattern_counter = prefix_table_recursively(text)[pattern_counter - 1]
 
+        # And then for the other case if the text is still being iterated through meaning the counter has not reached the full length of the text as well as the letter
+        # that we are currently at in the pattern does not match the letter we are at in the text
         elif text_counter < text_length and pattern_list[pattern_counter] != text_list[text_counter]:
+            # Whilst checking for that we also check if the pattern counter is zero
             if pattern_counter != 0:
                 pattern_counter = prefix_table_recursively(text)[pattern_counter - 1]
             else:
