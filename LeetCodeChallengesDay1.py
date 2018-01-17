@@ -139,7 +139,7 @@ def contains(text, pattern):
         index += 1
         len_text_list -= 1
 
-list_holder = [0,0,0,0]
+list_holder = [0,0,0,0,0,0,0,0,0,0,0]
 
 
 
@@ -162,8 +162,10 @@ def prefix_table_recursively(text, index_at_i=None, index_at_j=None):
 
     if first_element != second_element and index_at_i != 0:
         index_at_i -= 1
+        first_element = text_list[index_at_i]
 
     if index_at_i == 0 and first_element != second_element:
+        # print('This /is the first element: %s and this is the second element: %s' %(first_element,second_element))
         list_holder[index_at_j] = 0
         index_at_j += 1
 
@@ -175,8 +177,8 @@ def prefix_table_recursively(text, index_at_i=None, index_at_j=None):
 
     return prefix_table_recursively(text, index_at_i, index_at_j)
 
-# print(prefix_table_recursively("aabaacaabaa"))
-print(prefix_table_recursively("cacc"))
+print(prefix_table_recursively("aabaacaabaa"))
+# print(prefix_table_recursively(""))
 
 
 
