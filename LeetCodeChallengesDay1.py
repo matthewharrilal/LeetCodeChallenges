@@ -216,7 +216,7 @@ def string_searching(pattern,text):
         # return("No pattern was found")
 
 
-def recursive_string_search(pattern,text, counter_for_pattern=None,counter_for_text=None, pattern_list=None,text_list=None):
+def recursive_string_search(pattern, text, counter_for_pattern=None,counter_for_text=None, pattern_list=None,text_list=None):
 
 
     if counter_for_text is None and counter_for_pattern is None and pattern_list is None and text_list is None:
@@ -233,7 +233,8 @@ def recursive_string_search(pattern,text, counter_for_pattern=None,counter_for_t
         counter_for_text += 1
 
     if counter_for_pattern == len(pattern_list):
-        return 'The pattern starts at the index %s'%(counter_for_text - counter_for_pattern)
+        return('The pattern starts at the index %s'%(counter_for_text - counter_for_pattern))
+        
 
 
     if pattern_list[counter_for_pattern] != text_list[counter_for_text] and counter_for_text < len(text_list):
