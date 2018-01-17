@@ -233,8 +233,7 @@ def recursive_string_search(pattern,text, counter_for_pattern=None,counter_for_t
         counter_for_text += 1
 
     if counter_for_pattern == len(pattern_list):
-        print(counter_for_pattern,counter_for_text)
-        return 'This is where the pattern starts: %s'%(counter_for_text - counter_for_pattern)
+        return 'The pattern starts at the index %s'%(counter_for_text - counter_for_pattern)
 
 
     if pattern_list[counter_for_pattern] != text_list[counter_for_text] and counter_for_text < len(text_list):
@@ -244,7 +243,6 @@ def recursive_string_search(pattern,text, counter_for_pattern=None,counter_for_t
 
             # Why do we have to increment the text counter if it is the pattern that is shifting by 1?
             counter_for_text += 1
-            print('This is the text counter: %s and this is the pattern counter: %s' %(counter_for_text, counter_for_pattern))
 
     # If we are iterating through the text and the counter exceeds the length of the text
     # that means we could not find the pattern
@@ -254,7 +252,7 @@ def recursive_string_search(pattern,text, counter_for_pattern=None,counter_for_t
     return recursive_string_search(pattern,text,counter_for_pattern,counter_for_text,pattern_list,text_list)
 
 
-# print(recursive_string_search('boy', 'The boy Matthew is actually someone who is worth looking up to boy' ))
+print(recursive_string_search('boy', 'The boy Matthew is actually someone who is worth looking up to boy' ))
 # Have to track for the multiple occurences
 
 
@@ -305,7 +303,7 @@ def recursive_string_search_contains(text, pattern, text_counter=None, pattern_c
     return recursive_string_search_contains(text, pattern, text_counter, pattern_counter, text_list, pattern_list)
 
 
-print(recursive_string_search_contains('matthew', 'g'))
+# print(recursive_string_search_contains('matthew', 'g'))
 
 
 
