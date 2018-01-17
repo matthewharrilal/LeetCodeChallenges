@@ -178,7 +178,7 @@ def prefix_table_recursively(text, index_at_i=None, index_at_j=None):
     return prefix_table_recursively(text, index_at_i, index_at_j)
 
 print(prefix_table_recursively("aabaacaabaa"))
-# print(prefix_table_recursively(""))
+
 
 
 
