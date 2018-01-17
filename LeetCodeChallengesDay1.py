@@ -155,7 +155,7 @@ def prefix_table_recursively(text, index_at_i=None, index_at_j=None):
 
     first_element = text_list[index_at_i]
     second_element = text_list[index_at_j]
-    pdb.set_trace()
+    # pdb.set_trace()
     if first_element == second_element:
         list_holder[index_at_j] = index_at_i + 1
         index_at_i += 1
@@ -163,6 +163,8 @@ def prefix_table_recursively(text, index_at_i=None, index_at_j=None):
 
     if first_element != second_element and index_at_i != 0:
         index_at_i -= 1
+        print(index_at_i)
+        # first_element = first_element[index_at_i]
 
     if index_at_i == 0 and first_element != second_element:
         list_holder[index_at_j] = 0
