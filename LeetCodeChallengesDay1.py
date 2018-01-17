@@ -139,9 +139,6 @@ def contains(text, pattern):
         index += 1
         len_text_list -= 1
 
-# list_holder = [0,0,0,0,0,0,0,0]
-
-
 
 def prefix_table_recursively(pattern,list_holder=None,index_at_i=None, index_at_j=None):
     pattern_list = list(pattern)
@@ -257,7 +254,64 @@ def recursive_string_search(pattern,text, counter_for_pattern=None,counter_for_t
     return recursive_string_search(pattern,text,counter_for_pattern,counter_for_text,pattern_list,text_list)
 
 
-print(recursive_string_search('adab', 'abra cadabra' ))
+# print(recursive_string_search('boy', 'The boy Matthew is actually someone who is worth looking up to boy' ))
+# Have to track for the multiple occurences
+
+
+def recursive_string_search_contains(text, pattern, text_counter=None, pattern_counter=None, text_list=None, pattern_list=None):
+
+
+    if text_counter is None and pattern_counter is None and text_list is None and pattern_list is None:
+        # The reason we are doing this is because since this function is recursive to save
+        # memory so that these lists are not created every single time we only create them if they are set to none
+        # therefore they are only created once and this is on the very first iteration so we can use them on every
+        # iteration afterwards
+        text_counter = 0
+        pattern_counter = 0
+        text_list = list(text)
+        pattern_list = list(pattern)
+
+    print('This is the length of the text list: %s and this is the text counter: %s' % (len(text_list), text_counter))
+
+    # When approaching these recursive functions we want to always highlight the base cases
+    # The first base case would be the error base case
+    if text_counter > len(text_list):
+        # If the counter for the text exceeds the length of the text that means that the pattern could not
+        # be found in the provided text therefore return False
+        return False
+
+    # Now that we have highlighted the error base case then we want to write the rest of the conditionals and then put
+    # the base case at the end what this case accounts for if the letter in the pattern matches the letter in the text
+    if pattern_list[pattern_counter] == text_list[text_counter]:
+        pattern_counter += 1
+        text_counter += 1
+
+    # And then this base case checks if the whole pattern was found in the provided text
+    if pattern_counter == len(pattern_list):
+        return True
+
+    # This conditional checks if the letter in the pattern does not match the letter in the text and if more than one
+    # element in the pattern matched because if so then we can apply the formula
+    if pattern_list[pattern_counter] != text_list[text_counter] and text_counter < len(text_list):
+
+        if pattern_counter > 1:
+            # What this formula checks for is how many elements we can skip so we can save ourselves some unnecessary work
+            pattern_counter = pattern_counter - prefix_table_recursively(pattern)[pattern_counter - 1]
+        else:
+            text_counter += 1
+
+
+
+    return recursive_string_search_contains(text, pattern, text_counter, pattern_counter, text_list, pattern_list)
+
+
+print(recursive_string_search_contains('matthew', 'g'))
+
+
+
+
+
+
 
 
 

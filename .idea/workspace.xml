@@ -2,8 +2,6 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="33be0b31-bc46-4f30-a0ae-baf83d1240f7" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/codeStyleSettings.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/LeetCodeChallengesDay1.py" afterPath="$PROJECT_DIR$/LeetCodeChallengesDay1.py" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -18,8 +16,8 @@
       <file leaf-file-name="LeetCodeChallengesDay1.py" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/LeetCodeChallengesDay1.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="438">
-              <caret line="259" column="55" lean-forward="true" selection-start-line="259" selection-start-column="55" selection-end-line="259" selection-end-column="55" />
+            <state relative-caret-position="418">
+              <caret line="302" column="0" lean-forward="true" selection-start-line="302" selection-start-column="0" selection-end-line="302" selection-end-column="0" />
               <folding>
                 <element signature="e#0#13#0" expanded="true" />
               </folding>
@@ -164,8 +162,8 @@
   <component name="editorHistoryManager">
     <entry file="file://$PROJECT_DIR$/LeetCodeChallengesDay1.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="438">
-          <caret line="259" column="55" lean-forward="true" selection-start-line="259" selection-start-column="55" selection-end-line="259" selection-end-column="55" />
+        <state relative-caret-position="418">
+          <caret line="302" column="0" lean-forward="true" selection-start-line="302" selection-start-column="0" selection-end-line="302" selection-end-column="0" />
           <folding>
             <element signature="e#0#13#0" expanded="true" />
           </folding>
