@@ -179,43 +179,45 @@ def prefix_table_recursively(text,list_holder=None,index_at_i=None, index_at_j=N
 
     return prefix_table_recursively(text ,list_holder,index_at_i, index_at_j)
 
-#
-# def string_searching(pattern,text):
-#     # text_counter = 0
-#     # characters_counter = 0
-#     #
-#     # while pattern[characters_counter] == text_counter[text_counter]:
-#     #     # These counters only increment when there is a match
-#     #     characters_counter += 1
-#     #     text_counter += 1
-#
-#     pattern_length = len(pattern)
-#
-#     text_length = len(text)
-#
-#     text_counter = 0
-#     pattern_counter = 0
-#
-#     while text_counter < text_length:
-#         if pattern[pattern_counter] == text[text_counter]:
-#             text_counter += 1
-#             pattern_counter += 1
-#
-#         if pattern_counter == pattern_length:
-#             print("Found pattern at index %s" %(str(text_counter-pattern_counter)))
-#             pattern_counter =
 
+def string_searching(pattern,text):
+    # text_counter = 0
+    # characters_counter = 0
+    #
+    # while pattern[characters_counter] == text_counter[text_counter]:
+    #     # These counters only increment when there is a match
+    #     characters_counter += 1
+    #     text_counter += 1
 
+    pattern_list = list(pattern)
+    text_list = list(text)
 
+    pattern_length = len(pattern)
 
+    text_length = len(text)
 
+    text_counter = 0
+    pattern_counter = 0
 
+    while text_counter < text_length:
+        if pattern_list[pattern_counter] == text_list[text_counter]:
+            text_counter += 1
+            pattern_counter += 1
 
+        if pattern_counter == pattern_length:
+            print("Found pattern at index %s" %(str(text_counter-pattern_counter)))
+            pattern_counter = prefix_table_recursively(text)[pattern_counter - 1]
 
+        elif text_counter < text_length and pattern_list[pattern_counter] != text_list[text_counter]:
+            if pattern_counter != 0:
+                pattern_counter = prefix_table_recursively(text)[pattern_counter - 1]
+            else:
+                text_counter += 1
 
 
 
 print(prefix_table_recursively("accadaccac"))
+print(string_searching("ABABCABAB","ABABDABACDABABCABAB"))
 
 
 
