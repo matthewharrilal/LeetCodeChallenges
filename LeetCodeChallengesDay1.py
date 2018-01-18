@@ -313,9 +313,10 @@ def recursive_brute_force_string_search(text, pattern, text_counter=None, patter
 
     # Now we have to handle our different base cases let us start with our stopping of the recursion base case
     if len(pattern_list) == pattern_counter:
-        # This means that the pattern was found because this means the pattern counter was uninterrupted and the
-        # full pattern was found
-        return 'The pattern starts at: Index %s' %(text_counter - pattern_counter)
+
+        print( text_counter - pattern_counter)
+        pattern_counter -= 1
+
 
 
     # Let us handle the case where the character does not equal the character in the text
@@ -329,7 +330,7 @@ def recursive_brute_force_string_search(text, pattern, text_counter=None, patter
     return recursive_brute_force_string_search(text, pattern, text_counter, pattern_counter, text_list, pattern_list)
 
 
-print(recursive_brute_force_string_search('Matthew', 'z'))
+print(recursive_brute_force_string_search('the boy boy', 'b'))
 
 
 def string_search_boolean_return(string_search):
@@ -337,8 +338,7 @@ def string_search_boolean_return(string_search):
         return False
     return True
 
-print(string_search_boolean_return(recursive_brute_force_string_search('Matthew', 'at')))
-
-
+# print(string_search_boolean_return(recursive_brute_force_string_search('abc', 'a'))) # The tests that do not work 'abc', 'ac'))) as well as the empty strings ''
+# assert find_index('abc', 'ac') is None WE HAVE TO TEST THE CLOSE CASES
 
 
