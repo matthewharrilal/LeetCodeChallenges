@@ -300,7 +300,7 @@ def recursive_brute_force_string_search(text, pattern, text_counter=None, patter
 
     # Lastly we have to handle the base case where the pattern did not end up being found in the text provided
     if text_counter > len(text_list) - 1:
-        return 'Pattern could not be found in the text'
+        return None
 
 
     # Now let us handle if the character in the pattern equals the character in the text
@@ -332,7 +332,12 @@ def recursive_brute_force_string_search(text, pattern, text_counter=None, patter
 print(recursive_brute_force_string_search('Matthew', 'z'))
 
 
+def string_search_boolean_return(string_search):
+    if string_search == None:
+        return False
+    return True
 
+print(string_search_boolean_return(recursive_brute_force_string_search('Matthew', 'at')))
 
 
 
