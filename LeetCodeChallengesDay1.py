@@ -333,7 +333,7 @@ print(recursive_brute_force_string_search('Matthew', 'z'))
 
 
 def string_search_boolean_return(string_search):
-    if string_search == None:
+    if string_search is None:
         return False
     return True
 
