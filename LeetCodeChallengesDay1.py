@@ -288,10 +288,10 @@ def recursive_string_search_contains(text, pattern, text_counter=None, pattern_c
 # print(recursive_string_search_contains('matthew', 'at'))
 
 
-def recursive_brute_force_string_search(text, pattern, text_counter=None, pattern_counter=None, text_list=None, pattern_list=None, list_of_occurences=None):
+def recursive_brute_force_string_search(text, pattern, text_counter=None, pattern_counter=None,list_of_occurences=None):
 
     # Boilerplate code so certain elements do not get redefined every iteration of this recursive call
-    if text_counter is None and pattern_counter is None and text_list is None and pattern_list is None and list_of_occurences is None:
+    if text_counter is None and pattern_counter is None and list_of_occurences is None:
         text_counter = 0
         pattern_counter = 0
         text_list = list(text)
@@ -299,14 +299,13 @@ def recursive_brute_force_string_search(text, pattern, text_counter=None, patter
         list_of_occurences = []
 
     # Lastly we have to handle the base case where the pattern did not end up being found in the text provided
-    if text_counter > len(text_list) - 1:
+    if text_counter > len(text) - 1:
         if len(list_of_occurences) == 0:
             return None
         return list_of_occurences
 
-    print(text_counter, len(text_list), text_list)
     # Now let us handle if the character in the pattern equals the character in the text
-    if pattern_list[pattern_counter] == text_list[text_counter]:
+    if pattern[pattern_counter] == text[text_counter]:
 
         # If the character in the pattern is equal to character in the text then we want to increment both the
         # the text counter as well as the pattern counter so we can compare the next set of letters
@@ -325,7 +324,7 @@ def recursive_brute_force_string_search(text, pattern, text_counter=None, patter
         text_counter += 1
 
     # Now we have to handle our different base cases let us start with our stopping of the recursion base case
-    if len(pattern_list) == pattern_counter and pattern_counter > 0:
+    if len(pattern) == pattern_counter and pattern_counter > 0:
         # So what is happening in this block of code, firstly what we are doing with this occurrences
         #  of pattern variable is that we are finding the first index where the successful pattern occurs
 
@@ -343,11 +342,9 @@ def recursive_brute_force_string_search(text, pattern, text_counter=None, patter
 
 
     # To make the function recursive we return the function call itself
-    return recursive_brute_force_string_search(text, pattern, text_counter, pattern_counter, text_list, pattern_list, list_of_occurences)
+    return recursive_brute_force_string_search(text, pattern, text_counter, pattern_counter, list_of_occurences)
 
-
-# print(recursive_brute_force_string_search('abcabcdabcde', 'abcde'))
-print(recursive_brute_force_string_search('abra cadabra', 'abra'))
+print(recursive_brute_force_string_search('aaa', 'a'))
 
 
 def string_search_boolean_return(string_search):
