@@ -313,8 +313,7 @@ def recursive_brute_force_string_search(text, pattern, text_counter=None, patter
 
     # Now we have to handle our different base cases let us start with our stopping of the recursion base case
     if len(pattern_list) == pattern_counter:
-
-        print( text_counter - pattern_counter)
+        print('The pattern you are looking for starts at index: %s' %(text_counter -  pattern_counter))
         pattern_counter -= 1
 
 
@@ -330,7 +329,7 @@ def recursive_brute_force_string_search(text, pattern, text_counter=None, patter
     return recursive_brute_force_string_search(text, pattern, text_counter, pattern_counter, text_list, pattern_list)
 
 
-print(recursive_brute_force_string_search('the boy boy', 'b'))
+print(recursive_brute_force_string_search('the boy boy', 'h'))
 
 
 def string_search_boolean_return(string_search):
