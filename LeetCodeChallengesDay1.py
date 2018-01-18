@@ -120,12 +120,12 @@ def is_palindrome(word):
     return False
 
 
-print(is_palindrome("race car!!"))
+# print(is_palindrome("race car!!"))
 
 # STRING SEARCHING ALGORITHM
 
 
-def prefix_table_recursively(pattern,list_holder=None,index_at_i=None, index_at_j=None):
+def prefix_table_recursively(pattern, list_holder=None, index_at_i=None, index_at_j=None):
     pattern_list = list(pattern)
 
     if index_at_i is None and index_at_j is None and list_holder is None:
@@ -133,7 +133,6 @@ def prefix_table_recursively(pattern,list_holder=None,index_at_i=None, index_at_
         index_at_j = 1
         list_holder = [0] * (len(pattern_list))
         list_holder[index_at_i] = 0
-
 
     first_element = pattern_list[index_at_i]
     second_element = pattern_list[index_at_j]
@@ -284,11 +283,51 @@ def recursive_string_search_contains(text, pattern, text_counter=None, pattern_c
             text_counter += 1
 
 
-
     return recursive_string_search_contains(text, pattern, text_counter, pattern_counter, text_list, pattern_list)
 
+# print(recursive_string_search_contains('matthew', 'at'))
 
-# print(recursive_string_search_contains('matthew', 'g'))
+
+def recursive_brute_force_string_search(text, pattern, text_counter=None, pattern_counter=None, text_list=None, pattern_list=None):
+
+    # Boilerplate code so certain elements do not get redefined every iteration of this recursive call
+    if text_counter is None and pattern_counter is None and text_list is None and pattern_list is None:
+        text_counter = 0
+        pattern_counter = 0
+        text_list = list(text)
+        pattern_list = list(pattern)
+
+
+    # Now let us handle if the character in the pattern equals the character in the text
+    if pattern_list[pattern_counter] == text_list[text_counter]:
+        # If the character in the pattern is equal to character in the text then we want to increment both the
+        # the text counter as well as the pattern counter so we can compare the next set of letters
+        text_counter += 1
+        pattern_counter += 1
+
+    # Lastly we have to handle the base case where the pattern did not end up being found in the text provided
+    if text_counter > len(text_list):
+        raise ValueError('Pattern Could Not Be Found In Text')
+
+    # Now we have to handle our different base cases let us start with our stopping of the recursion base case
+    if len(pattern_list) == pattern_counter:
+        # This means that the pattern was found because this means the pattern counter was uninterrupted and the
+        # full pattern was found
+        return 'The pattern starts at: Index %s' %(text_counter - pattern_counter)
+
+
+    # Let us handle the case where the character does not equal the character in the text
+    if pattern_list[pattern_counter] != text_list[text_counter]:
+        # If the characters do not match then we want to increment the text so we can essentially compare the
+        # next letter in the text to the first character in the pattern as oppose to comparing the next letter in the
+        # pattern to the first character in the text
+        text_counter += 1
+
+    # To make the function recursive we return the function call itself
+    return recursive_brute_force_string_search(text, pattern, text_counter, pattern_counter, text_list, pattern_list)
+
+
+print(recursive_brute_force_string_search('Matthew', 'z'))
 
 
 
