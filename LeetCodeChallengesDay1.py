@@ -67,19 +67,23 @@ def reverse_given_text(word):
     return formatted_word
 
 
-
 def reverse_text_recursively(word, reversed_word_list=None,index=None):
+
+    # Boiler plate code formatting the parameters into types that will be useful to us
     word_list = list(word)
 
     len_of_word_list = len(word_list)
 
-
+    # Since the call is recursive so list and the index do not get redefined each iteration
     if index == None and reversed_word_list == None:
         index = 0
         reversed_word_list = []
 
+    # Reverse the indexes
     reversal_indexes = (len_of_word_list - index)
 
+    # Take those reversed indexes subscript the original list and append them to reversed
+    # version of the original word list
     reversed_word_list.append(word_list[reversal_indexes - 1])
 
     index += 1
@@ -115,36 +119,16 @@ def is_palindrome(word):
 
     return False
 
-# print(is_palindrome("race car"))
 
+print(is_palindrome("race car!!"))
 
 # STRING SEARCHING ALGORITHM
-
-def contains(text, pattern):
-    '''Returns a boolean indicating whether or not a pattern occurs in text or not'''
-
-    text_list = list(text)
-
-    len_text_list = len(text_list)
-
-    index = 0
-
-    while len_text_list > 0:
-
-        for word in pattern:
-            if word == text_list[index]:
-                return True
-            return False
-
-        index += 1
-        len_text_list -= 1
 
 
 def prefix_table_recursively(pattern,list_holder=None,index_at_i=None, index_at_j=None):
     pattern_list = list(pattern)
-    # pdb.set_trace()
 
-    if index_at_i == None and index_at_j == None and list_holder == None:
+    if index_at_i is None and index_at_j is None and list_holder is None:
         index_at_i = 0
         index_at_j = 1
         list_holder = [0] * (len(pattern_list))
@@ -234,7 +218,7 @@ def recursive_string_search(pattern, text, counter_for_pattern=None,counter_for_
 
     if counter_for_pattern == len(pattern_list):
         return('The pattern starts at the index %s'%(counter_for_text - counter_for_pattern))
-        
+
 
 
     if pattern_list[counter_for_pattern] != text_list[counter_for_text] and counter_for_text < len(text_list):
@@ -253,7 +237,7 @@ def recursive_string_search(pattern, text, counter_for_pattern=None,counter_for_
     return recursive_string_search(pattern,text,counter_for_pattern,counter_for_text,pattern_list,text_list)
 
 
-print(recursive_string_search('boy', 'The boy Matthew is actually someone who is worth looking up to boy' ))
+# print(recursive_string_search('boy', 'The boy Matthew is actually someone who is worth looking up to boy' ))
 # Have to track for the multiple occurences
 
 
