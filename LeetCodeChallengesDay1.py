@@ -298,6 +298,11 @@ def recursive_brute_force_string_search(text, pattern, text_counter=None, patter
         pattern_list = list(pattern)
 
 
+    # Lastly we have to handle the base case where the pattern did not end up being found in the text provided
+    if text_counter > len(text_list) - 1:
+        return 'Pattern could not be found in the text'
+
+
     # Now let us handle if the character in the pattern equals the character in the text
     if pattern_list[pattern_counter] == text_list[text_counter]:
         # If the character in the pattern is equal to character in the text then we want to increment both the
@@ -305,9 +310,6 @@ def recursive_brute_force_string_search(text, pattern, text_counter=None, patter
         text_counter += 1
         pattern_counter += 1
 
-    # Lastly we have to handle the base case where the pattern did not end up being found in the text provided
-    if text_counter > len(text_list):
-        raise ValueError('Pattern Could Not Be Found In Text')
 
     # Now we have to handle our different base cases let us start with our stopping of the recursion base case
     if len(pattern_list) == pattern_counter:
@@ -328,6 +330,9 @@ def recursive_brute_force_string_search(text, pattern, text_counter=None, patter
 
 
 print(recursive_brute_force_string_search('Matthew', 'z'))
+
+
+
 
 
 
